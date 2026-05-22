@@ -1,0 +1,495 @@
+/* =========================================
+   1. RESET Y ESTILOS GENERALES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    /* Fondo degradado rosado (como la referencia original) */
+ background-color: #000000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================================
+   2. CONTENEDOR PRINCIPAL (TARJETA)
+   ========================================= */
+.card {
+    display: flex;
+    width: 950px;
+    height: 550px;
+    background: #9a0000;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+/* =========================================
+   3. PANEL IZQUIERDO (CARRUSEL DE IMÁGENES)
+   ========================================= */
+.left-panel {
+    width: 45%;
+    /* Ya no necesitamos el color de fondo verde si vamos a usar fotos */
+    background: #252f3f; 
+    /* Quitamos el padding para que las imágenes lleguen al borde */
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* El logo ahora necesita posicionamiento absoluto para estar sobre la foto */
+.left-panel .logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 24px;
+    color: white;
+    z-index: 10; /* Asegura que esté por encima de la imagen */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Sombra para leerlo mejor */
+}
+
+/* Ventana de visualización del carrusel */
+.carousel-viewport {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%; /* Asegura que ocupe toda la altura */
+    overflow: hidden;
+    position: relative;
+}
+
+/* El riel que se mueve */
+.carousel-track {
+    display: flex;
+    height: 100%;
+    width: 300%; /* 3 slides = 300% */
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Cada diapositiva individual */
+.slide {
+    width: 33.3333%;
+    height: 100%;
+    /* Flex para centrar la imagen si fuera necesario */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Quitamos el padding interno */
+    padding: 0;
+    position: relative;
+}
+
+/* ESTILO NUEVO PARA LAS IMÁGENES */
+.slide img {
+    width: 100%;
+    height: 100%;
+    /* ESTO ES CLAVE: hace que la imagen cubra todo el espacio sin deformarse (la recorta si hace falta) */
+    object-fit: cover;
+    /* Opcional: un filtro oscuro para que el texto blanco (si pones) resalte más */
+    filter: brightness(0.8); 
+}
+
+/* Contenedor de los puntitos de navegación */
+.dots-container {
+    position: absolute; /* Los ponemos flotando sobre la imagen */
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+/* Estilo del puntito */
+.dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.5); /* Un poco más transparente */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.dot:hover {
+    background: rgba(255,255,255,0.8);
+}
+
+.dot.active {
+    background: white;
+    transform: scale(1.2);
+}
+/* =========================================
+   4. PANEL DERECHO (FORMULARIO)
+   ========================================= */
+.right-panel {
+    width: 55%;
+    background: #240814; /* Azul Oscuro */
+    padding: 40px;
+    color: #000000;
+    position: relative;
+}
+
+/* Botones superiores (Sign In / Sign Up) */
+.top-buttons {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 14px;
+    color: #000000;
+}
+
+.btn-ghost {
+    color: #00000000;
+    text-decoration: none;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.btn-ghost:hover {
+    color: rgba(4, 0, 0, 0);
+}
+
+.btn-solid-sm {
+    background: hsl(0, 0%, 100%);
+    color: rgb(0, 0, 0);
+    padding: 5px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+    margin-top: 200px;
+}
+
+.btn-solid-sm:hover {
+    transform: translateY(-1px);
+}
+
+/* Título del Formulario */
+.form-header {
+    margin-top: 2px;
+    margin-bottom: 30px;
+}
+
+.form-header h3 {
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.form-header .highlight {
+    color: #ffffff;
+    font-weight: 600;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 5px;
+}
+
+.form-header .light {
+    font-size: 10px;
+    margin: 0 10px;
+}
+
+/* Inputs (Campos de texto) */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.input-group input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #a5464b;
+    padding: 10px 0;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-bottom: 1px solid #ffffff;
+}
+
+/* Checkbox y Términos */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.checkbox-group input {
+    accent-color: #ffffff;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-group a {
+    color: #e29587;
+    text-decoration: none;
+}
+
+.checkbox-group a:hover {
+    text-decoration: underline;
+}
+
+/* Botón de Enviar (Grande) */
+.btn-submit {
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px 40px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(80, 220, 184, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 2px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(80, 220, 184, 0.4);
+}
+
+.member-link {
+    font-size: 12px;
+    color: #6c7889;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.member-link:hover {
+    color: white;
+}
+
+/* Notificación personalizada */
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #240814; /* Coral 240814*/
+    color: #ffffff;            /* Blanco */
+    padding: 15px 25px;
+    border-radius: 8px;
+    border-left: 8px solid #df8c83; /* Oscuro */
+    box-shadow: 0 4px 15px rgba(36, 8, 20, 0.3);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.custom-alert.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+
+
+/* contenedor del fondo */
+
+
+/* animación del desplazamiento */
+
+
+/* contenido */
+.content{
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+  margin-top: 40vh;
+  font-size: 3rem;
+}
+
+
+/* 1. La "Ventana": Se queda quieta, rota y aplica efectos */
+.bg-window {
+  position: fixed;
+  inset: 1%; /* Un poco más grande para evitar bordes al rotar */
+  transform: rotate(-10deg) scale(1.3);
+  opacity: 0.4;
+  filter: blur(3px) brightness(0.6);
+  overflow: hidden; /* Oculta lo que sale de la pantalla */
+  pointer-events: none;
+  z-index: -1; /* Asegura que quede al fondo */
+}
+
+/* 2. El "Tren": Contiene todas las imágenes en una fila larga */
+.bg-track {
+  display: flex; /* Usamos flex para una fila horizontal */
+  gap: 10px;     /* Espacio entre fotos */
+  width: max-content; /* El ancho se ajusta al contenido total */
+  animation: scrollLoop 50s linear infinite;
+}
+
+/* Estilo de las imágenes */
+.bg-track img {
+  width: 550px; /* Define un tamaño fijo o usa '20vw' para relativo */
+  height: 650px; /* Altura consistente */
+  object-fit: cover;
+  flex-shrink: 0; /* IMPORTANTE: Evita que las fotos se aplasten */
+  border-radius: 8px; /* Opcional: bordes bonitos */
+}
+
+/* 3. La Animación: El truco matemático */
+@keyframes scrollLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Movemos solo el -50% porque la segunda mitad es idéntica a la primera.
+       Al llegar al 50%, salta instantáneamente al 0% y el ojo no lo nota. */
+    transform: translateX(-50%);
+  }
+}
+
+
+
+/* 1. EL FONDO (Mantiene el modal oculto hasta que se active) */
+.modal-overlay {
+    display: none; /* <--- ESTO ES LO QUE LO MANTIENE OCULTO */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    align-items: center;     /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+}
+
+/* Clase que agrega JS para mostrarlo */
+.modal-overlay.active {
+    display: flex; /* <--- AL ACTIVARSE, SE PONE FLEX PARA CENTRAR */
+}
+
+/* 2. LA CAJA DEL MODAL (Versión Grande) */
+.modal-content {
+    background-color: #2b0e1a; 
+    border: 1px solid #5c1e32;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    
+    /* TAMAÑO GRANDE */
+    width: 90%;
+    max-width: 1000px;
+    height: 85vh; /* 85% del alto de la pantalla */
+    
+    /* FLEXBOX para organizar el contenido interior */
+    display: flex;
+    flex-direction: column;
+    
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    font-family: sans-serif;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 3. TÍTULO */
+.modal-content h2 {
+    font-size: 2rem;
+    margin-top: 0;
+    border-bottom: 1px solid #5c1e32;
+    padding-bottom: 15px;
+    flex-shrink: 0; /* No deja que el título se aplaste */
+}
+
+/* 4. CUERPO CON SCROLL */
+.modal-body {
+    flex-grow: 1; /* Ocupa todo el espacio sobrante */
+    overflow-y: auto; /* Scroll automático */
+    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+    padding-right: 15px;
+}
+
+/* Estilo del Scrollbar (Barra de desplazamiento) */
+.modal-body::-webkit-scrollbar {
+    width: 10px;
+}
+.modal-body::-webkit-scrollbar-track {
+    background: #1a080f;
+    border-radius: 5px;
+}
+.modal-body::-webkit-scrollbar-thumb {
+    background: #5c1e32;
+    border-radius: 5px;
+}
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #7a2842;
+}
+
+/* 5. BOTÓN DE CERRAR (X) */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #aaa;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.close-btn:hover {
+    color: #fff;
+}
+
+/* 6. BOTÓN "ENTENDIDO" */
+.modal-action-btn {
+    background-color: #ffffff;
+    color: #2b0e1a;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center; /* Centrado horizontalmente */
+    transition: transform 0.2s;
+    flex-shrink: 0; /* No deja que el botón se aplaste */
+}
+.modal-action-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-8px); }
+    40%       { transform: translateX(8px); }
+    60%       { transform: translateX(-5px); }
+    80%       { transform: translateX(5px); }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Gestor de tareas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="indexstyle.css">
+    <link rel="icon" type="image/svg+xml" href="icon.png">
+</head>
+<body>
+
+
+<div class="bg-window">
+  <div class="bg-track">
+    
+    <img src="img9.jpg">
+    <img src="img8.jpg">
+    <img src="img11.jpg">
+    <img src="img4.jpg">
+    <img src="img5.jfif">
+    <img src="img6.jpg">
+    <img src="img7.jpg">
+    <img src="img10.jpg">
+
+     <img src="img9.jpg">
+    <img src="img8.jpg">
+    <img src="img11.jpg">
+    <img src="img4.jpg">
+    <img src="img5.jfif">
+    <img src="img6.jpg">
+    <img src="img7.jpg">
+    <img src="img10.jpg">
+    
+  </div>
+</div>
+
+
+<div class="main-container">
+    <div class="card">
+        <div class="left-panel" id="carousel-panel">
+         <div class="carousel-viewport">
+    <div class="carousel-track" id="track">
+        <div class="slide">
+            <img src="img1.jpeg" alt="Imagen 1">
+        </div>
+         <div class="slide">
+            <img src="img2.jpeg" alt="Imagen 2">
+        </div>
+         <div class="slide">
+            <img src="img3.jpeg" alt="Imagen 3">
+        </div>
+    </div>
+</div>
+
+            <div class="dots-container">
+                <span class="dot active" onclick="manualSlide(0)"></span>
+                <span class="dot" onclick="manualSlide(1)"></span>
+                <span class="dot" onclick="manualSlide(2)"></span>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="top-buttons">
+             
+                <a href="#" class="btn-solid-sm">Sign In</a>
+            </div>
+
+            <div class="form-header">
+                <h3> <span class="highlight">Sign In</span></h3>
+            </div>
+
+          <form id="miFormularioLogin" method="POST">
+
+    
+    <div class="input-group">
+        <label>NOMBRE COMPLETO</label>
+        <input type="text" id="nombre" name="nombre" placeholder="INTRODUCE TU NOMBRE COMPLETO">
+    </div>
+
+    <div class="input-group">
+        <label>PASSWORD</label>
+        <input type="password" id="password" name="password" placeholder=".........">
+    </div>
+
+    <div class="input-group">
+        <label>E-MAIL</label>
+        <input type="email" id="email" name="email" placeholder="TU E-MAIL VA AQUÍ">
+    </div>
+  <div class="checkbox-group">
+                
+                  <div class="checkbox-container">
+    <input type="checkbox" id="terms" name="terms">
+    <label for="terms">Acepto los <a href="#" id="termsLink">terms of service</a></label>
+</div>
+
+<div id="termsModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Términos de Servicio</h2>
+<div class="modal-body">
+    <p>
+        Bienvenida a este pequeño espacio que existe por ti y para ti.  
+        No es solo una página de tareas; es un lugar donde se guardan ideas, 
+        sueños pendientes y metas que merecen ser cumplidas con calma y amor.
+    </p>
+
+    <p>
+        Al usar esta plataforma, aceptas este acuerdo no como una obligación, 
+        sino como un compromiso contigo misma y con todo lo que deseas lograr.  
+        Cada tarea que escribas aquí es una intención, y cada tarea completada 
+        es una victoria que merece ser celebrada.
+    </p>
+
+    <ul>
+        <li>
+            <strong>Cuidado de este espacio:</strong><br>
+            Este lugar es solo tuyo. Trátalo con el mismo cariño con el que tratas 
+            lo que te importa, porque aquí viven tus planes, tus procesos 
+            y tus pequeños avances diarios.
+        </li>
+
+        <li>
+            <strong>Confianza y privacidad:</strong><br>
+            Todo lo que escribas aquí se queda aquí.  
+            Tus palabras, tus pendientes y tus pensamientos estarán protegidos, 
+            respetados y cuidados, como se cuida algo que es especial.
+        </li>
+
+        <li>
+            <strong>Acceso personal:</strong><br>
+            Tu contraseña es una llave. No abre cualquier lugar, 
+            abre este espacio íntimo donde organizas tu mundo, 
+            por eso debe permanecer solo en tus manos.
+        </li>
+    </ul>
+
+    <p>
+        Esta plataforma fue creada para acompañarte, no para exigirte.  
+        Para recordarte que no tienes que hacerlo todo perfecto, 
+        solo seguir avanzando a tu ritmo.
+    </p>
+
+    <p>
+        Al continuar, aceptas este acuerdo silencioso:  
+        seguir intentando, seguir soñando y seguir confiando  
+        en que cada paso, por pequeño que sea, vale la pena.
+    </p>
+</div>
+
+
+        <button id="acceptBtn" class="modal-action-btn">Entendido</button>
+        
+    </div>
+</div>
+                </div>
+    <button type="submit" class="btn-submit">Sign in</button>
+
+</form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

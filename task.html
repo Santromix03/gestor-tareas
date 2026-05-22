@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de tareas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styleTask.css">
+    <link rel="stylesheet" href="apuntes-styles.css">
+    <link rel="stylesheet" href="config-styles.css">
+    <link rel="stylesheet" href="config-styles.css">
+    <link rel="stylesheet" href="sugerencias-styles.css">
+    <link rel="icon" type="image/svg+xml" href="icon.png">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="user-profile">
+                <img src="perfil.jpeg" alt="User">
+                <div class="user-info">
+                    <h3>Unname</h3>
+                    <p>Love Plan</p>
+                </div>
+            </div>
+
+            <nav class="menu">
+                <a href="#" class="active"><i class="fa-solid fa-house"></i> Panel principal</a>
+                <a href="#"><i class="fa-solid fa-list-check"></i> Mis tareas</a>
+                
+                <a href="#" id="linkCalendario"><i class="fa-solid fa-calendar"></i> Calendario</a>
+                <a href="#" id="linkApuntes"><i class="fa-solid fa-book-open"></i> Apuntes</a>
+                <a href="#"><i class="fa-solid fa-gear"></i> Configuraciones</a>
+                <a href="#"><i class="fa-solid fa-envelope"></i> Sugerencias</a>
+            </nav>
+
+            <div class="logout">
+                <a href="index.html"><i class="fa-solid fa-power-off"></i> Cerrar sesión</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-bar">
+                <div class="greeting">
+                    <h1>Gestor de tareas</h1>
+                </div>
+                
+                <div class="search-box">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="buscar tarea...">
+                </div>
+
+                <div class="top-actions">
+                    <button class="icon-btn" id="btnCampana">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="campana-punto" id="campanaPunto"></span>
+                    </button>
+                    <button class="icon-btn" id="theme-toggle">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                    <button class="btn-agregar">+ Agregar tarea</button>
+                </div>
+            </header>
+
+            <!-- PANEL PRINCIPAL -->
+            <div class="task-board">
+                <div class="column high-priority">
+                    <div class="column-header">
+                        <span><i class="fa-solid fa-circle"></i> Alta prioridad</span>
+                        <span class="count">0</span>
+                    </div>
+                    <div class="task-list" id="high-list"></div>
+                </div>
+                <div class="column medium-priority">
+                    <div class="column-header">
+                        <span><i class="fa-solid fa-circle"></i> Media prioridad</span>
+                        <span class="count">0</span>
+                    </div>
+                    <div class="task-list" id="medium-list"></div>
+                </div>
+                <div class="column low-priority">
+                    <div class="column-header">
+                        <span><i class="fa-solid fa-circle"></i> Baja prioridad</span>
+                        <span class="count">0</span>
+                    </div>
+                    <div class="task-list" id="low-list"></div>
+                </div>
+            </div>
+
+            <!-- MIS TAREAS -->
+            <div id="vista-mis-tareas" class="vista-oculta">
+                <div class="mis-tareas-header">
+                    <div class="mis-tareas-tabs">
+                        <button class="tab-btn active" data-filtro="todas">Todas</button>
+                        <button class="tab-btn activas" data-filtro="activa">Activas</button>
+                        <button class="tab-btn terminadas" data-filtro="terminada">Terminadas</button>
+                        <button class="tab-btn canceladas" data-filtro="cancelada">Canceladas</button>
+                    </div>
+                </div>
+                <div class="mis-tareas-contenedor">
+                    <div id="mis-tareas-lista" class="mis-tareas-lista"></div>
+                </div>
+            </div>
+
+            <!-- CALENDARIO -->
+            <div id="vista-calendario" class="vista-oculta">
+                <div class="cal-semestres-wrapper">
+                    <div id="calContenido" class="cal-semestres-grid"></div>
+                </div>
+                <div class="cal-vista-header">
+                    <div class="cal-vista-nav">
+                        <button id="calPrev" class="cal-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button id="calNext" class="cal-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        
+<!-- ===================== APUNTES ===================== -->
+<div id="vista-apuntes" class="vista-oculta">
+    <div class="materias-grid" id="materiasGrid"></div>
+</div>
+<!-- =================== FIN APUNTES =================== -->
+      
+<!-- ===================== CONFIGURACIONES ===================== -->
+<!-- Añade esto dentro del <main>, después del bloque de APUNTES -->
+
+<div id="vista-configuraciones" class="vista-oculta">
+
+    <!-- TEMAS -->
+    <div class="config-seccion">
+        <h2 class="config-titulo"><i class="fa-solid fa-palette"></i> Personalización de Temas</h2>
+        <div class="temas-grid" id="temasGrid">
+
+            <div class="tema-card active" data-tema="noche-oscura">
+                <div class="tema-preview">
+                    <div class="tp-sidebar"></div>
+                    <div class="tp-main">
+                        <div class="tp-topbar"></div>
+                        <div class="tp-cols">
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                        </div>
+                    </div>
+                </div>
+                <span class="tema-nombre">Noche Oscura</span>
+                <span class="tema-check"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+
+            <div class="tema-card" data-tema="aurora-boreal">
+                <div class="tema-preview aurora">
+                    <div class="tp-sidebar"></div>
+                    <div class="tp-main">
+                        <div class="tp-topbar"></div>
+                        <div class="tp-cols">
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                        </div>
+                    </div>
+                </div>
+                <span class="tema-nombre">Verde</span>
+                <span class="tema-check"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+
+            <div class="tema-card" data-tema="soleado">
+                <div class="tema-preview soleado">
+                    <div class="tp-sidebar"></div>
+                    <div class="tp-main">
+                        <div class="tp-topbar"></div>
+                        <div class="tp-cols">
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                        </div>
+                    </div>
+                </div>
+                <span class="tema-nombre">Rojo</span>
+                <span class="tema-check"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+
+            <div class="tema-card" data-tema="oceano">
+                <div class="tema-preview oceano">
+                    <div class="tp-sidebar"></div>
+                    <div class="tp-main">
+                        <div class="tp-topbar"></div>
+                        <div class="tp-cols">
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                        </div>
+                    </div>
+                </div>
+                <span class="tema-nombre">Celeste</span>
+                <span class="tema-check"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+
+            <div class="tema-card" data-tema="monocromo">
+                <div class="tema-preview monocromo">
+                    <div class="tp-sidebar"></div>
+                    <div class="tp-main">
+                        <div class="tp-topbar"></div>
+                        <div class="tp-cols">
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                            <div class="tp-col"></div>
+                        </div>
+                    </div>
+                </div>
+                <span class="tema-nombre">Monocromo</span>
+                <span class="tema-check"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+
+        </div>
+        <button class="btn-save config-aceptar" id="btnAceptarTema">Aceptar</button>
+    </div>
+
+    <!-- PERFIL -->
+    <div class="config-seccion">
+        <h2 class="config-titulo"><i class="fa-solid fa-user"></i> Actualización de Perfil</h2>
+        <div class="config-perfil-grid">
+
+            <!-- Foto -->
+            <div class="config-card">
+                <h3>Cambiar Foto de Perfil</h3>
+                <div class="config-foto-wrap">
+                    <img id="configFotoPreview" src="perfil.jpeg" alt="Foto de perfil">
+                    <div class="config-foto-overlay" id="btnCambiarFoto">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                </div>
+                <input type="file" id="configFotoInput" accept="image/*" style="display:none;">
+                <button class="btn-save" id="btnGuardarFoto" style="margin-top:16px;width:100%;" disabled>
+                    Guardar foto
+                </button>
+            </div>
+
+            <!-- Nombre -->
+            <div class="config-card">
+                <h3>Cambiar Nombre</h3>
+                <p class="config-nombre-actual" id="configNombreActual">Unname</p>
+                <div class="input-group" style="margin-top:16px;">
+                    <label>Nuevo nombre</label>
+                    <input type="text" id="configNombreInput" placeholder="Escribe tu nombre...">
+                </div>
+                <button class="btn-save" id="btnGuardarNombre" style="margin-top:16px;width:100%;">
+                    Guardar nombre
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- =================== FIN CONFIGURACIONES =================== -->
+
+
+<!-- Añade esto dentro del <main>, después del bloque de CONFIGURACIONES -->
+
+<div id="vista-sugerencias" class="vista-oculta">
+    <div class="sugerencias-wrapper">
+        <div class="sugerencias-header">
+            <div class="sugerencias-icono">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+                <h2>Buzón de Sugerencias</h2>
+                <p>¿Tienes alguna idea o comentario? ¡Cuéntame!</p>
+            </div>
+        </div>
+
+        <form id="formSugerencias" class="sugerencias-form">
+            <div class="sugerencias-fila-top">
+                <div class="input-group">
+                    <label>Nombre</label>
+                    <input type="text" id="sug-nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="input-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="sug-correo" placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Asunto</label>
+                    <input type="text" id="sug-asunto" placeholder="Breve descripción" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Mensaje</label>
+                <textarea id="sug-mensaje" placeholder="Tu sugerencia detallada aquí..." rows="6" required></textarea>
+            </div>
+
+            <div class="sugerencias-footer">
+                <button type="submit" class="btn-save sugerencias-btn-enviar">
+                    <i class="fa-solid fa-paper-plane"></i> Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- =================== FIN SUGERENCIAS =================== -->
+
+
+
+        </main>
+    </div>
+
+    <!-- MODAL NUEVA TAREA -->
+    <div id="modalTarea" class="modal oculto">
+        <div class="modal-content">
+            <h2>Nueva tarea</h2>
+            <form id="formTarea">
+                <div class="col-left">
+                    <div class="input-group">
+                        <label>Título</label>
+                        <input type="text" name="titulo" placeholder="Ej: Rediseñar Home" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Descripción</label>
+                        <textarea name="descripcion" placeholder="Detalles de la tarea..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Fecha de entrega</label>
+                        <input type="date" name="fecha_entrega">
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div class="input-group">
+                        <label>Subtareas (Opcional)</label>
+                        <div id="subtareas" class="subtasks-list">
+                            <input type="text" name="subtareas[]" placeholder="Subtarea 1">
+                            <input type="text" name="subtareas[]" placeholder="Subtarea 2">
+                            <input type="text" name="subtareas[]" placeholder="Subtarea 3">
+                        </div>
+                        <button type="button" id="addSubtarea" class="btn-dashed">+ Añadir subtarea</button>
+                    </div>
+                    <div class="input-group">
+                        <label>Importancia</label>
+                        <div class="priority-selector">
+                            <label class="prio-option high">
+                                <input type="radio" name="importancia" value="alta">
+                                <span>Alta</span>
+                            </label>
+                            <label class="prio-option medium">
+                                <input type="radio" name="importancia" value="media" checked>
+                                <span>Media</span>
+                            </label>
+                            <label class="prio-option low">
+                                <input type="radio" name="importancia" value="baja">
+                                <span>Baja</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="acciones">
+                    <button type="button" id="cerrarModal" class="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-save">Guardar tarea</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="miAlerta" class="custom-alert"></div>
+
+    <!-- MODAL DETALLE TAREA -->
+    <div id="modalDetalle" class="modal oculto">
+        <div class="modal-content modal-detalle-content">
+            <div class="detalle-header">
+                <div class="detalle-titulo-grupo">
+                    <span id="detalle-badge-prioridad" class="badge-prioridad"></span>
+                    <h2 id="detalle-titulo"></h2>
+                </div>
+                <button id="cerrarDetalle" class="btn-cerrar-detalle"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="detalle-body">
+                <div class="detalle-col-izq">
+                    <div class="detalle-seccion">
+                        <p class="detalle-label"><i class="fa-regular fa-file-lines"></i> Descripción</p>
+                        <p id="detalle-descripcion" class="detalle-valor"></p>
+                    </div>
+                    <div class="detalle-seccion">
+                        <p class="detalle-label"><i class="fa-regular fa-calendar"></i> Fecha de entrega</p>
+                        <div id="detalle-fecha" class="detalle-valor"></div>
+                    </div>
+                </div>
+                <div class="detalle-col-der">
+                    <div class="detalle-seccion">
+                        <p class="detalle-label"><i class="fa-solid fa-list-check"></i> Subtareas</p>
+                        <div id="detalle-subtareas-lista" class="detalle-subtareas-lista"></div>
+                        <button id="detalle-add-subtarea" class="btn-dashed" style="margin-top:10px;">+ Añadir subtarea</button>
+                        <div id="detalle-input-nueva-subtarea" style="display:none; margin-top:8px; flex-direction:column; gap:8px;">
+                            <input type="text" id="detalle-nueva-subtarea-txt" placeholder="Nueva subtarea...">
+                            <div style="display:flex; gap:8px;">
+                                <button id="detalle-confirmar-subtarea" class="btn-save" style="flex:1;">Guardar</button>
+                                <button id="detalle-cancelar-subtarea" class="btn-cancel" style="flex:1;">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENÚ CONTEXTUAL TAREAS -->
+    <div id="contextMenu" class="context-menu">
+        <div class="context-menu-item terminada" data-accion="terminada">
+            <i class="fa-solid fa-circle-check"></i> Marcar como terminada
+        </div>
+        <div class="context-menu-item cancelada" data-accion="cancelada">
+            <i class="fa-solid fa-ban"></i> Marcar como cancelada
+        </div>
+        <div class="context-menu-item editar" data-accion="editar">
+            <i class="fa-solid fa-pen"></i> Editar tarea
+        </div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item eliminar" data-accion="eliminar">
+            <i class="fa-solid fa-trash-can"></i> Borrar tarea
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR TAREA -->
+    <div id="modalEditar" class="modal oculto">
+        <div class="modal-content modal-editar-content">
+            <h2>Editar tarea</h2>
+            <form id="formEditar">
+                <input type="hidden" id="editar-id">
+                <div class="col-left">
+                    <div class="input-group">
+                        <label>Título</label>
+                        <input type="text" id="editar-titulo" placeholder="Título" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Descripción</label>
+                        <textarea id="editar-descripcion" placeholder="Descripción..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Fecha de entrega</label>
+                        <input type="date" id="editar-fecha">
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div class="input-group">
+                        <label>Importancia</label>
+                        <div class="priority-selector">
+                            <label class="prio-option high">
+                                <input type="radio" name="editar-importancia" value="alta">
+                                <span>Alta</span>
+                            </label>
+                            <label class="prio-option medium">
+                                <input type="radio" name="editar-importancia" value="media">
+                                <span>Media</span>
+                            </label>
+                            <label class="prio-option low">
+                                <input type="radio" name="editar-importancia" value="baja">
+                                <span>Baja</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="acciones">
+                    <button type="button" id="cerrarModalEditar" class="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-save">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MENÚ CONTEXTUAL MIS TAREAS -->
+    <div id="contextMenuMT" class="context-menu">
+        <div class="context-menu-item terminada" data-accion-mt="activar">
+            <i class="fa-solid fa-rotate-left"></i> Volver a activar
+        </div>
+        <div class="context-menu-item editar" data-accion-mt="editar">
+            <i class="fa-solid fa-pen"></i> Editar tarea
+        </div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item eliminar" data-accion-mt="eliminar">
+            <i class="fa-solid fa-trash-can"></i> Borrar tarea
+        </div>
+    </div>
+
+<!-- MODAL SUBIR APUNTE -->
+<div id="modalApunte" class="modal oculto">
+    <div class="modal-content modal-apunte-content">
+        <h2><i class="fa-solid fa-camera" style="color:var(--primary-pink);margin-right:8px;"></i>Subir apunte</h2>
+        <form id="formApunte">
+            <div class="input-group">
+                <label>Título / Tema</label>
+                <input type="text" id="apunte-titulo" placeholder="Ej: Parcial 1 - Funciones" required>
+            </div>
+            <div class="apunte-drop-zone" id="apunteDropZone">
+                <input type="file" id="apunteFile" accept="image/*" style="display:none;" multiple>
+                <div class="drop-zone-contenido" id="dropZoneContenido">
+                    <i class="fa-solid fa-image"></i>
+                    <p>Arrastra tu foto aquí o <span class="drop-link">examina archivos</span></p>
+                    <small>PNG, JPG, JPEG — puedes subir varias a la vez</small>
+                </div>
+                <img id="apuntePreview" class="apunte-preview oculto" alt="">
+            </div>
+            <div id="apunteMultiPreview" style="display:none; gap:8px; flex-wrap:wrap; margin-bottom:12px;"></div>
+            <div class="apunte-progress oculto" id="apunteProgress">
+                <div class="apunte-progress-bar" id="apunteProgressBar"></div>
+                <span id="apunteProgressTxt">Busca la imagen amorcirto</span>
+            </div>
+            <div class="acciones">
+                <button type="button" id="cerrarModalApunte" class="btn-cancel">Cancelar</button>
+                <button type="submit" id="btnGuardarApunte" class="btn-save" disabled>
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL NUEVA MATERIA -->
+<div id="modalMateria" class="modal oculto">
+    <div class="modal-content modal-materia-content">
+        <h2><i class="fa-solid fa-folder-plus" style="color:var(--primary-pink);margin-right:8px;"></i>Nueva materia</h2>
+        <div class="input-group">
+            <label>Nombre de la materia</label>
+            <input type="text" id="nuevaMateriaInput" placeholder="Ej: Cálculo, Historia del Arte...">
+        </div>
+        <div class="acciones">
+            <button type="button" id="cerrarModalMateria" class="btn-cancel">Cancelar</button>
+            <button type="button" id="btnConfirmarMateria" class="btn-save">Crear materia</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL VER MATERIA -->
+<div id="modalVerMateria" class="modal oculto">
+    <div class="modal-content modal-materia-ver">
+        <div class="modal-materia-ver-header">
+            <h2><i class="fa-solid fa-book-open"></i> <span id="verMateriaNombre"></span></h2>
+            <div class="modal-materia-ver-acciones">
+                <button class="btn-save" id="btnSubirEnMateria" style="padding:8px 16px;font-size:0.82rem;">
+                    <i class="fa-solid fa-plus"></i> Subir apunte
+                </button>
+                <button id="cerrarVerMateria" class="btn-cerrar-detalle"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+        <div class="modal-materia-ver-body" id="verMateriaBody"></div>
+    </div>
+</div>
+
+<!-- MODAL VER FOTO GRANDE -->
+<div id="modalVerFoto" class="modal oculto">
+    <div class="modal-content modal-ver-foto-content">
+        <div class="ver-foto-header">
+            <h3 id="verFotoTitulo"></h3>
+            <div class="ver-foto-nav">
+                <span class="ver-foto-contador" id="verFotoContador"></span>
+                <button class="ver-foto-btn-nav" id="verFotoPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="ver-foto-btn-nav" id="verFotoNext"><i class="fa-solid fa-chevron-right"></i></button>
+                <button id="cerrarVerFoto" class="btn-cerrar-detalle"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+        <div class="ver-foto-img-wrap">
+            <img id="verFotoImg" src="" alt="Apunte">
+        </div>
+        <div class="ver-foto-footer">
+            <button id="btnEliminarFoto" class="btn-cancel" style="color:#ff4757;border-color:#ff4757;">
+                <i class="fa-solid fa-trash-can"></i> Eliminar
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- MODAL CONFIRMAR ELIMINAR -->
+<div id="modalConfirmar" class="modal oculto">
+    <div class="modal-content" style="width:380px;max-width:95vw;text-align:center;padding:32px;">
+        <div style="width:56px;height:56px;border-radius:16px;background:rgba(255,71,87,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <i class="fa-solid fa-trash-can" style="font-size:1.4rem;color:#ff4757;"></i>
+        </div>
+        <h2 style="font-size:1.1rem;margin-bottom:8px;" id="confirmarTitulo">¿Eliminar?</h2>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:24px;" id="confirmarMensaje"></p>
+        <div style="display:flex;gap:12px;justify-content:center;">
+            <button id="confirmarCancelar" class="btn-cancel" style="flex:1;">Cancelar</button>
+            <button id="confirmarAceptar" class="btn-save" style="flex:1;background:#ff4757;border-color:#ff4757;">Eliminar</button>
+        </div>
+    </div>
+</div>
+
+    <script type="module" src="scriptTask.js"></script>
+   
+</body>
+</html>

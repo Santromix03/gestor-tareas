@@ -1,0 +1,388 @@
+/* =========================================
+   TEMAS — Variables por clase en body
+   ========================================= */
+
+/* AURORA BOREAL */
+body.tema-aurora-boreal {
+    --bg-dark: #071a14;
+    --bg-sidebar: #0d261d;
+    --card-bg: #143329;
+    --bg-card: #143329;
+    --primary-pink: #2ecc71; /* Verde esmeralda */
+    --text-white: #e8f8f0;
+    --text-gray: #8abf9e;
+    --bg-modal: #0d261d;
+    --bg-input: #143329;
+    --text-main: #e8f8f0;
+    --text-muted: #8abf9e;
+    --accent: #2ecc71;
+    --accent-hover: #27ae60;
+    --border-light: rgba(46, 204, 113, 0.15);
+    --neon-color: #2ecc71;
+    --neon-shadow: 0 0 10px rgba(46, 204, 113, 0.6), 0 0 20px rgba(46, 204, 113, 0.3);
+    --column-bg: rgba(20, 51, 41, 0.5);
+}
+
+/* SOLEADO */
+body.tema-soleado {
+    --bg-dark: #1a0505;
+    --bg-sidebar: #2d0a0a;
+    --card-bg: #3d1212;
+    --bg-card: #3d1212;
+    --primary-pink: #a52a2a; /* Borgoña */
+    --text-white: #ffebeb;
+    --text-gray: #b38f8f;
+    --bg-modal: #2d0a0a;
+    --bg-input: #3d1212;
+    --text-main: #ffebeb;
+    --text-muted: #b38f8f;
+    --accent: #e63946;
+    --accent-hover: #c1121f;
+    --border-light: rgba(165, 42, 42, 0.2);
+    --neon-color: #a52a2a;
+    --neon-shadow: 0 0 10px rgba(165, 42, 42, 0.5), 0 0 20px rgba(165, 42, 42, 0.2);
+    --column-bg: rgba(61, 18, 18, 0.5);
+}
+
+/* OCÉANO PROFUNDO */
+/* OCÉANO PROFUNDO (Azul Real / Vibrante) */
+body.tema-oceano {
+    --bg-dark: #020c1b;        /* Azul noche casi negro */
+    --bg-sidebar: #051933;     /* Azul marino profundo */
+    --card-bg: #0a2547;        /* Azul petróleo */
+    --bg-card: #0a2547;
+    --primary-pink: #00d2ff;   /* Celeste neón vibrante */
+    --text-white: #e0f7ff;     /* Blanco azulado */
+    --text-gray: #5baec5;      /* Gris azulado */
+    --bg-modal: #051933;
+    --bg-input: #0a2547;
+    --text-main: #e0f7ff;
+    --text-muted: #5baec5;
+    --accent: #00d2ff;
+    --accent-hover: #0099ff;
+    --border-light: rgba(0, 210, 255, 0.2);
+    --neon-color: #00d2ff;
+    --neon-shadow: 0 0 10px rgba(0, 210, 255, 0.6), 0 0 20px rgba(0, 210, 255, 0.3);
+    --column-bg: rgba(10, 37, 71, 0.6);
+}
+/* MONOCROMO */
+body.tema-monocromo {
+    --bg-dark: #111111;
+    --bg-sidebar: #1a1a1a;
+    --card-bg: #242424;
+    --bg-card: #242424;
+    --primary-pink: #888888;
+    --text-white: #f0f0f0;
+    --text-gray: #888888;
+    --bg-modal: #1a1a1a;
+    --bg-input: #242424;
+    --text-main: #f0f0f0;
+    --text-muted: #888888;
+    --accent: #aaaaaa;
+    --accent-hover: #888888;
+    --border-light: rgba(255,255,255,0.1);
+    --neon-color: #aaaaaa;
+    --neon-shadow: 0 0 10px rgba(170,170,170,0.4), 0 0 20px rgba(170,170,170,0.2);
+    --column-bg: rgba(40, 40, 40, 0.5);
+}
+
+/* Aplicar color de columna a cada tema */
+body.tema-aurora-boreal .column,
+body.tema-soleado .column,
+body.tema-oceano .column,
+body.tema-monocromo .column {
+    background-color: var(--column-bg);
+}
+
+
+body.tema-aurora-boreal .task-badge {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+body.tema-soleado .task-badge {
+    background: rgba(165, 42, 42, 0.15);
+    color: #e63946;
+    border: 1px solid rgba(165, 42, 42, 0.3);
+}
+
+body.tema-oceano .task-badge {
+    background: rgba(0, 210, 255, 0.15);
+    color: #00d2ff;
+    border: 1px solid rgba(0, 210, 255, 0.3);
+}
+
+body.tema-monocromo .task-badge {
+    background: rgba(170, 170, 170, 0.15);
+    color: #aaaaaa;
+    border: 1px solid rgba(170, 170, 170, 0.3);
+}
+
+/* Light mode sobrescribe TODOS los temas */
+body.light-mode {
+    --bg-dark: #f0f2f5 !important;
+    --bg-sidebar: #ffffff !important;
+    --card-bg: #ffffff !important;
+    --bg-card: #ffffff !important;
+    --text-white: #1e1621 !important;
+    --text-gray: #666666 !important;
+    --bg-modal: #ffffff !important;
+    --bg-input: #f4f5f7 !important;
+    --text-main: #1e1621 !important;
+    --text-muted: #7d7d8e !important;
+    --border-light: #e1e1e8 !important;
+    --column-bg: rgba(255,255,255,0.5) !important;
+}
+
+body.light-mode .column {
+    background-color: rgba(255,255,255,0.5) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+/* =========================================
+   VISTA CONFIGURACIONES
+   ========================================= */
+#vista-configuraciones {
+    display: none;
+    flex-direction: column;
+    gap: 32px;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 40px;
+}
+#vista-configuraciones.vista-activa {
+    display: flex;
+}
+
+.config-seccion {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 28px 32px;
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.config-titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.config-titulo i {
+    color: var(--primary-pink);
+}
+
+/* =========================================
+   GRID DE TEMAS
+   ========================================= */
+.temas-grid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.tema-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+    padding: 4px;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    transition: all 0.25s ease;
+}
+.tema-card:hover {
+    border-color: var(--primary-pink);
+    transform: translateY(-3px);
+}
+.tema-card.active {
+    border-color: var(--primary-pink);
+}
+
+.tema-check {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--primary-pink);
+    font-size: 1rem;
+    filter: drop-shadow(0 0 4px rgba(201,79,124,0.6));
+}
+.tema-card.active .tema-check { display: block; }
+
+.tema-nombre {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* Mini preview del tema */
+.tema-preview {
+    width: 160px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #1e1621;
+}
+
+.tp-sidebar {
+    width: 30px;
+    height: 100%;
+    background: #281e2b;
+    flex-shrink: 0;
+}
+.tp-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    gap: 5px;
+}
+.tp-topbar {
+    height: 12px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.08);
+}
+.tp-cols {
+    flex: 1;
+    display: flex;
+    gap: 4px;
+}
+.tp-col {
+    flex: 1;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+}
+
+/* Aurora Boreal preview (Verde) */
+.tema-preview.aurora { background: #071a14; }
+.tema-preview.aurora .tp-sidebar { background: #0d261d; }
+.tema-preview.aurora .tp-topbar { background: rgba(46, 204, 113, 0.3); }
+.tema-preview.aurora .tp-col { background: rgba(20, 51, 41, 0.5); }
+
+/* Soleado preview (Borgoña) */
+.tema-preview.soleado { background: #1a0505; }
+.tema-preview.soleado .tp-sidebar { background: #2d0a0a; }
+.tema-preview.soleado .tp-topbar { background: rgba(165, 42, 42, 0.3); }
+.tema-preview.soleado .tp-col { background: rgba(61, 18, 18, 0.5); }
+
+/* Preview corregida (Cian sobre Fondo Oscuro) */
+.tema-preview.oceano { 
+    background: #020c1b; 
+}
+.tema-preview.oceano .tp-sidebar { 
+    background: #051933; 
+}
+.tema-preview.oceano .tp-topbar { 
+    background: rgba(0, 210, 255, 0.3); 
+}
+.tema-preview.oceano .tp-col { 
+    background: rgba(10, 37, 71, 0.7); 
+    border: 1px solid rgba(0, 210, 255, 0.1);
+}
+
+/* Monocromo preview */
+.tema-preview.monocromo { background: #111111; }
+.tema-preview.monocromo .tp-sidebar { background: #1a1a1a; }
+.tema-preview.monocromo .tp-topbar { background: rgba(255,255,255,0.08); }
+.tema-preview.monocromo .tp-col { background: rgba(40,40,40,0.5); }
+
+.config-aceptar {
+    align-self: flex-end;
+    padding: 10px 28px;
+}
+
+/* =========================================
+   PERFIL
+   ========================================= */
+.config-perfil-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.config-card {
+    background: var(--bg-modal);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.config-card h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.config-foto-wrap {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.config-foto-wrap img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-pink);
+    transition: filter 0.2s;
+}
+
+.config-foto-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.config-foto-wrap:hover .config-foto-overlay { opacity: 1; }
+.config-foto-wrap:hover img { filter: brightness(0.7); }
+
+.config-nombre-actual {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-pink);
+    margin-top: 8px;
+}
+
+/* =========================================
+   RESPONSIVE CONFIGURACIONES
+   ========================================= */
+@media (max-width: 768px) {
+    .temas-grid {
+        gap: 10px;
+        justify-content: center;
+    }
+    .tema-preview {
+        width: 120px;
+        height: 75px;
+    }
+    .config-perfil-grid {
+        grid-template-columns: 1fr;
+    }
+    .config-seccion {
+        padding: 20px 16px;
+    }
+}
