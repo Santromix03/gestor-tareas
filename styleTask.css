@@ -1329,6 +1329,15 @@ body.light-mode .context-menu-item:hover {
 /* ---- MÓVIL (max 768px) ---- */
 @media (max-width: 768px) {
 
+        /* Calendario: 4 meses en 2 columnas en móvil */
+    .cal-mes-card:nth-child(n+5) {
+        display: none;
+    }
+
+    .cal-semestres-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px;
+    }
     /* El body ya no oculta el overflow para permitir scroll en móvil */
     body {
         overflow: auto;
