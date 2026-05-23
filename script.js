@@ -101,7 +101,7 @@ if (form) {
             localStorage.setItem("usuario", usuario.nombre);
             localStorage.setItem("id", usuario.id_users);
 
-            window.location.href = "task.html";
+            window.location.href = "12381792387192.html";
 
         } catch (err) {
             console.error(err);
