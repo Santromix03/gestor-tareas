@@ -526,14 +526,29 @@ function mostrarConfirmar(mensaje, onAceptar) {
 
         materiasGrid.innerHTML = '';
 
-        if (!materias.length) {
-            materiasGrid.innerHTML = `
-                <div style="grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:60px 20px;color:var(--text-muted);text-align:center;">
-                    <i class="fa-solid fa-book-open" style="font-size:3rem;opacity:0.3;"></i>
-                    <p style="font-size:.9rem;max-width:260px;line-height:1.5;">Aún no tienes materias.<br>Crea una con el botón de arriba.</p>
-                </div>`;
-            return;
-        }const iconos = ['fa-book-open','fa-folder','fa-graduation-cap','fa-bookmark','fa-file-lines','fa-school','fa-pen-ruler','fa-clipboard','fa-layer-group','fa-brain'];
+     materiasGrid.innerHTML = `
+    <div class="materia-card materia-card-nueva" id="btnNuevaMateria">
+        <div class="materia-card-icono" style="background:rgba(201,79,124,0.15);box-shadow:none;border:2px dashed var(--primary-pink);">
+            <i class="fa-solid fa-plus" style="color:var(--primary-pink);"></i>
+        </div>
+        <span class="materia-card-nombre" style="color:var(--primary-pink);">Nueva materia</span>
+    </div>`;
+
+document.getElementById('btnNuevaMateria').addEventListener('click', () => {
+    document.getElementById('nuevaMateriaInput').value = '';
+    modalMateria.classList.remove('oculto');
+    setTimeout(() => document.getElementById('nuevaMateriaInput').focus(), 100);
+});
+
+if (!materias.length) {
+    materiasGrid.innerHTML += `
+        <div style="grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:60px 20px;color:var(--text-muted);text-align:center;">
+            <i class="fa-solid fa-book-open" style="font-size:3rem;opacity:0.3;"></i>
+            <p style="font-size:.9rem;max-width:260px;line-height:1.5;">Aún no tienes materias.<br>Crea una con el botón de arriba.</p>
+        </div>`;
+    return;
+}
+const iconos = ['fa-book-open','fa-folder','fa-graduation-cap','fa-bookmark','fa-file-lines','fa-school','fa-pen-ruler','fa-clipboard','fa-layer-group','fa-brain'];
 materiasGrid.innerHTML = `
     <div class="materia-card materia-card-nueva" id="btnNuevaMateria">
         <div class="materia-card-icono" style="background:rgba(201,79,124,0.15);box-shadow:none;border:2px dashed var(--primary-pink);">
