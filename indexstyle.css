@@ -494,31 +494,40 @@ body {
     80%       { transform: translateX(5px); }
 }
 
-/* =========================================
-   RESPONSIVE — LOGIN
-   ========================================= */
+
 @media (max-width: 768px) {
 
-
-        .checkbox-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        pointer-events: all;
-        position: relative;
-        z-index: 100;
-    }
-
-    .checkbox-group {
-        position: relative;
-        z-index: 100;
-    }
-    body {
-            .bg-window,
+    .bg-window,
     .bg-track {
         display: none !important;
         pointer-events: none !important;
     }
+
+    input[type="checkbox"] {
+        width: 20px !important;
+        height: 20px !important;
+        min-width: 20px !important;
+        appearance: checkbox !important;
+        -webkit-appearance: checkbox !important;
+        pointer-events: all !important;
+        position: relative;
+        z-index: 200;
+    }
+
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        z-index: 200;
+    }
+
+    .checkbox-group {
+        position: relative;
+        z-index: 200;
+    }
+
+    body {
         align-items: flex-start;
         padding: 20px 15px 40px;
         height: auto;
@@ -551,12 +560,7 @@ body {
     .form-header {
         margin-top: 0;
     }
-
-    .bg-window {
-        display: none;
-    }
 }
-
 @media (max-width: 480px) {
 
     .card {
