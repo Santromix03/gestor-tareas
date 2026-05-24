@@ -499,6 +499,20 @@ body {
    ========================================= */
 @media (max-width: 768px) {
 
+
+        .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        pointer-events: all;
+        position: relative;
+        z-index: 100;
+    }
+
+    .checkbox-group {
+        position: relative;
+        z-index: 100;
+    }
     body {
             .bg-window,
     .bg-track {
