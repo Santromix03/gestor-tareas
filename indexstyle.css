@@ -500,6 +500,11 @@ body {
 @media (max-width: 768px) {
 
     body {
+            .bg-window,
+    .bg-track {
+        display: none !important;
+        pointer-events: none !important;
+    }
         align-items: flex-start;
         padding: 20px 15px 40px;
         height: auto;
