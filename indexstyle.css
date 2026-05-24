@@ -514,6 +514,16 @@ body {
         z-index: 200;
     }
 
+    .checkbox-group input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+    appearance: checkbox;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    border: 2px solid #ffffff;
+    background: transparent;
+    cursor: pointer;
+}
     .checkbox-container {
         display: flex;
         align-items: center;
